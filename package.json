@@ -1,0 +1,348 @@
+{
+  "name": "zovo-drawio-viewer",
+  "displayName": "Drawio Viewer & Preview",
+  "description": "Drawio viewer for VS Code: open .drawio and .dio diagrams read-only, plain or compressed, with page tabs, zoom, pan, fit, layers, find across pages, a light or dark canvas and shape details on click. Offline, no account.",
+  "version": "0.1.0",
+  "publisher": "zovo",
+  "license": "MIT",
+  "icon": "icon.png",
+  "galleryBanner": {
+    "color": "#1B2433",
+    "theme": "dark"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/theluckystrike/drawio-viewer-vscode"
+  },
+  "bugs": {
+    "url": "https://github.com/theluckystrike/drawio-viewer-vscode/issues"
+  },
+  "homepage": "https://github.com/theluckystrike/drawio-viewer-vscode#readme",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Visualization",
+    "Other"
+  ],
+  "keywords": [
+    "drawio",
+    "draw.io",
+    "diagram",
+    "dio",
+    "flowchart"
+  ],
+  "main": "./src/extension.js",
+  "activationEvents": [
+    "onUri"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    },
+    "virtualWorkspaces": true
+  },
+  "contributes": {
+    "customEditors": [
+      {
+        "viewType": "drawioViewer.editor",
+        "displayName": "Drawio Viewer (read-only)",
+        "selector": [
+          {
+            "filenamePattern": "*.drawio"
+          },
+          {
+            "filenamePattern": "*.dio"
+          }
+        ],
+        "priority": "default"
+      }
+    ],
+    "commands": [
+      {
+        "command": "drawioViewer.openWith",
+        "title": "Open in Drawio Viewer",
+        "category": "Drawio Viewer"
+      },
+      {
+        "command": "drawioViewer.openSample",
+        "title": "Open the Sample Diagram",
+        "category": "Drawio Viewer"
+      },
+      {
+        "command": "drawioViewer.openWalkthrough",
+        "title": "Get Started",
+        "category": "Drawio Viewer"
+      },
+      {
+        "command": "drawioViewer.moreViewers",
+        "title": "More free tools by Zovo",
+        "category": "Drawio Viewer"
+      },
+      {
+        "command": "drawioViewer.supportDeveloper",
+        "title": "Support the developer",
+        "category": "Drawio Viewer"
+      },
+      {
+        "command": "drawioViewer.exportImages",
+        "title": "Export Pages to SVG and PNG (Pro)",
+        "category": "Drawio Viewer"
+      },
+      {
+        "command": "drawioViewer.compare",
+        "title": "Compare Two Diagrams: Markdown Report (Pro)",
+        "category": "Drawio Viewer"
+      },
+      {
+        "command": "drawioViewer.extract",
+        "title": "Extract Labels and Data to CSV or Markdown (Pro)",
+        "category": "Drawio Viewer"
+      },
+      {
+        "command": "drawioViewer.batchExport",
+        "title": "Batch Export a Folder to SVG (Pro)",
+        "category": "Drawio Viewer"
+      },
+      {
+        "command": "drawioViewer.zovoPro.exportImages",
+        "title": "Zovo Pro: Export pages to SVG and PNG"
+      },
+      {
+        "command": "drawioViewer.zovoPro.compare",
+        "title": "Zovo Pro: Compare with another diagram"
+      },
+      {
+        "command": "drawioViewer.zovoPro.extract",
+        "title": "Zovo Pro: Extract labels and data"
+      },
+      {
+        "command": "drawioViewer.zovoPro.batchExport",
+        "title": "Zovo Pro: Batch export diagrams to SVG"
+      },
+      {
+        "command": "drawioViewer.getPro",
+        "title": "Get Zovo Pro (USD 19 once, all Zovo extensions)",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "drawioViewer.payWithPayPal",
+        "title": "Pay for Zovo Pro with PayPal (USD 19, team of 5 USD 59)",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "drawioViewer.unlockWithSponsors",
+        "title": "I already paid: unlock with GitHub Sponsors",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "drawioViewer.enterLicenseKey",
+        "title": "Enter Zovo Pro license key",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "drawioViewer.removeLicense",
+        "title": "Remove Zovo Pro from this editor",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "drawioViewer.payByCard",
+        "title": "Pay for Zovo Pro by card (USD 19)",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "drawioViewer.enterKey",
+        "title": "Enter a key",
+        "category": "Zovo Pro"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "drawioViewer.exportImages",
+          "when": "activeCustomEditorId == 'drawioViewer.editor' && config.drawioViewer.showProTools",
+          "group": "1_drawio@1"
+        },
+        {
+          "command": "drawioViewer.compare",
+          "when": "activeCustomEditorId == 'drawioViewer.editor' && config.drawioViewer.showProTools",
+          "group": "1_drawio@2"
+        },
+        {
+          "command": "drawioViewer.extract",
+          "when": "activeCustomEditorId == 'drawioViewer.editor' && config.drawioViewer.showProTools",
+          "group": "1_drawio@3"
+        },
+        {
+          "command": "drawioViewer.batchExport",
+          "when": "activeCustomEditorId == 'drawioViewer.editor' && config.drawioViewer.showProTools",
+          "group": "1_drawio@4"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "drawioViewer.openWith",
+          "when": "resourceFilename =~ /\\.(drawio|dio)$/i && !explorerResourceIsFolder",
+          "group": "navigation@9"
+        },
+        {
+          "command": "drawioViewer.zovoPro.exportImages",
+          "when": "resourceFilename =~ /\\.(drawio|dio)$/i && !explorerResourceIsFolder && config.drawioViewer.showProTools",
+          "group": "zovoPro@1"
+        },
+        {
+          "command": "drawioViewer.zovoPro.compare",
+          "when": "resourceFilename =~ /\\.(drawio|dio)$/i && !explorerResourceIsFolder && config.drawioViewer.showProTools",
+          "group": "zovoPro@2"
+        },
+        {
+          "command": "drawioViewer.zovoPro.extract",
+          "when": "resourceFilename =~ /\\.(drawio|dio)$/i && !explorerResourceIsFolder && config.drawioViewer.showProTools",
+          "group": "zovoPro@3"
+        },
+        {
+          "command": "drawioViewer.zovoPro.batchExport",
+          "when": "explorerResourceIsFolder && config.drawioViewer.showProTools",
+          "group": "zovoPro@4"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "drawioViewer.exportImages",
+          "when": "config.drawioViewer.showProTools"
+        },
+        {
+          "command": "drawioViewer.compare",
+          "when": "config.drawioViewer.showProTools"
+        },
+        {
+          "command": "drawioViewer.extract",
+          "when": "config.drawioViewer.showProTools"
+        },
+        {
+          "command": "drawioViewer.batchExport",
+          "when": "config.drawioViewer.showProTools"
+        },
+        {
+          "command": "drawioViewer.zovoPro.exportImages",
+          "when": "false"
+        },
+        {
+          "command": "drawioViewer.zovoPro.compare",
+          "when": "false"
+        },
+        {
+          "command": "drawioViewer.zovoPro.extract",
+          "when": "false"
+        },
+        {
+          "command": "drawioViewer.zovoPro.batchExport",
+          "when": "false"
+        },
+        {
+          "command": "drawioViewer.openWith",
+          "when": "false"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Drawio Viewer",
+      "properties": {
+        "drawioViewer.canvas": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "light",
+            "dark"
+          ],
+          "enumDescriptions": [
+            "Light canvas with a light color theme, dark canvas with a dark one.",
+            "Always a white canvas.",
+            "Always a dark canvas; diagram colors are adapted for dark."
+          ],
+          "default": "auto",
+          "description": "The canvas behind the diagram when a file opens. The toolbar can change it per tab."
+        },
+        "drawioViewer.maxFileMB": {
+          "type": "number",
+          "default": 100,
+          "minimum": 1,
+          "maximum": 1024,
+          "description": "Files up to this size are opened. Larger files show a message and are not read."
+        },
+        "drawioViewer.showProTools": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the Zovo Pro tools (export to SVG and PNG, compare, extract, batch export) in the Command Palette, the Explorer menu and the viewer toolbar. Everything free stays visible."
+        },
+        "drawioViewer.askForRating": {
+          "type": "boolean",
+          "default": true,
+          "description": "Ask once for a Marketplace rating after diagrams opened without an error on two occasions at least 30 minutes apart. \"Later\" asks one more time after 7 days, \"No thanks\" never asks again. Nothing is sent anywhere."
+        },
+        "drawioViewer.showSupportLinks": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the small Rate, More free tools and Zovo Pro links at the bottom of the viewer. Nothing is sent anywhere."
+        },
+        "zovo.drawio.trial.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the 7-day Zovo Pro trial button in the Pro panel."
+        }
+      }
+    },
+    "walkthroughs": [
+      {
+        "id": "drawioViewer.start",
+        "title": "Get started with the Drawio Viewer",
+        "description": "Look at .drawio and .dio diagrams in VS Code, read-only.",
+        "steps": [
+          {
+            "id": "open",
+            "title": "Open a diagram",
+            "description": "Click a .drawio or .dio file in the Explorer. It opens read-only with page tabs, zoom and fit.\n[Open the sample diagram](command:drawioViewer.openSample)",
+            "media": {
+              "image": "images/screenshot.png",
+              "altText": "A three-page web shop diagram in the Drawio Viewer with page tabs, the toolbar and the shape details panel."
+            },
+            "completionEvents": [
+              "onCommand:drawioViewer.openSample"
+            ]
+          },
+          {
+            "id": "pages",
+            "title": "Pages, layers and find",
+            "description": "Switch pages with the tabs, turn layers on and off, and find text on every page.",
+            "media": {
+              "markdown": "walkthrough/pages.md"
+            }
+          },
+          {
+            "id": "details",
+            "title": "Shape details",
+            "description": "Click a shape to read its label, tooltip, link and custom data.",
+            "media": {
+              "markdown": "walkthrough/details.md"
+            }
+          },
+          {
+            "id": "related",
+            "title": "Tools for other diagram files",
+            "description": "These free Zovo extensions open other diagram files. A link opens the extension page, and you choose there whether to install it.\n[PlantUML Viewer](command:extension.open?%5B%22zovo.zovo-plantuml-viewer%22%5D)\n[Graphviz Viewer](command:extension.open?%5B%22zovo.zovo-graphviz-preview%22%5D)\n[BPMN Diagram Editor](command:extension.open?%5B%22zovo.zovo-bpmn-editor%22%5D)",
+            "media": {
+              "markdown": "walkthrough/related.md"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "scripts": {
+    "test": "node scripts/test.js",
+    "package": "npx -y @vscode/vsce@3 package --no-dependencies"
+  },
+  "sponsor": {
+    "url": "https://github.com/sponsors/theluckystrike/sponsorships?tier_id=679878"
+  }
+}
